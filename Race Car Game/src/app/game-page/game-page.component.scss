@@ -1,0 +1,44 @@
+.game-history {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  max-height: 50vh; /* Maksymalna wysokość ustawiona na 70% wysokości widoku */
+  overflow-y: auto; /* Dodanie paska przewijania pionowego */
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  select {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}
+
+::ng-deep .black-and-white {
+  ngx-race-tile {
+    background: #ffffff;
+    &.free div {
+      background: #ffffff;
+    }
+    &.car div {
+      background: #000000;
+    }
+    &.othercar div {
+      background: #7c7c7c;
+    }
+  }
+}

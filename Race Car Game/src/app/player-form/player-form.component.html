@@ -1,0 +1,51 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="playerName">Player Name:</label>
+      <input type="text" id="playerName" formControlName="playerName" />
+      <div
+        *ngIf="form.get('playerName')?.touched && form.get('playerName')?.errors?.['required']"
+      >
+        <small class="error">Player name is required.</small>
+      </div>
+      <div
+        *ngIf="form.get('playerName')?.touched && form.get('playerName')?.errors?.['minlength']"
+      >
+        <small class="error"
+          >Player name must be at least 5 characters long.</small
+        >
+      </div>
+    </div>
+
+    <div>
+      <label for="playerEmail">Player Email:</label>
+      <input type="email" id="playerEmail" formControlName="playerEmail" />
+      <div *ngIf="form.get('playerEmail')?.touched">
+        <small
+          class="error"
+          *ngIf="form.get('playerEmail')?.errors?.['required']"
+        >
+          Email is required.
+        </small>
+        <small class="error" *ngIf="form.get('playerEmail')?.errors?.['email']">
+          Please enter a valid email address.
+        </small>
+      </div>
+    </div>
+
+    <div>
+      <label for="token">Token:</label>
+      <input type="text" id="token" formControlName="token" />
+      <div *ngIf="form.get('token')?.touched">
+        <small class="error" *ngIf="form.get('token')?.errors?.['required']">
+          Token is required.
+        </small>
+        <small class="error" *ngIf="form.get('token')?.errors?.['minlength']">
+          Token must be at least 4 characters long.
+        </small>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!form.valid">Start Game</button>
+  </form>
+</div>

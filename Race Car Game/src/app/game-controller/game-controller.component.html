@@ -1,0 +1,10 @@
+<div class="game-controller">
+  <button [disabled]="isControlDisabled" (click)="onTurboOn()">Turbo ON</button>
+  <button [disabled]="isControlDisabled" (click)="onActionLeft()">Left</button>
+  <button [disabled]="isControlDisabled" (click)="onActionRight()">
+    Right
+  </button>
+  <button [disabled]="isControlDisabled" (click)="onTurboOff()">
+    Turbo OFF
+  </button>
+</div>

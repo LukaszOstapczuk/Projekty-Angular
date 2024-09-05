@@ -1,0 +1,9 @@
+<h1>Who are you?</h1>
+
+<app-form (submit)="onFormSubmit($event)"></app-form>
+
+<br/>
+<br/>
+<h2>Actions</h2>
+<button [disabled]="!fullname" (click)="welcome()" >Welcome</button>
+<button [disabled]="!fullname" (click)="bye()">Bye</button>

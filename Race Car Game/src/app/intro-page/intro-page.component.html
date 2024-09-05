@@ -1,0 +1,15 @@
+<div class="intro-page" [ngClass]="selectedColorPalette">
+  <h2 class="title">RACE GAME</h2>
+  <p>Welcome to the game, where every race is a new adventure!</p>
+  <p>Enter your details below and start your exciting journey!</p>
+
+  <label for="colorPalette">Choose a color palette:</label>
+  <select id="colorPalette" [(ngModel)]="selectedColorPalette">
+    <option value="normal">Normal</option>
+    <option value="high-contrast">High Contrast</option>
+  </select>
+
+  <div>
+    <app-player-form (startGameEvent)="startGame($event)"></app-player-form>
+  </div>
+</div>

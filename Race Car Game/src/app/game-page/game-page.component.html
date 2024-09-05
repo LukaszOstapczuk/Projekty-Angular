@@ -1,0 +1,88 @@
+<div *ngIf="tokenStatus !== null">
+  <p
+    [ngClass]="{
+      'success-message': tokenStatus,
+      'error-message': !tokenStatus
+    }"
+  >
+    {{ tokenMessage }}
+  </p>
+</div>
+
+<div>
+  <h2 *ngIf="gameStatus !== 'Ended'">Welcome, {{ playerName }}!</h2>
+  <app-game-info [gameStatus]="gameStatus" [points]="points"></app-game-info>
+  <p *ngIf="gameStatus !== 'Ended'">
+    Time Spent: {{ timeSpent | date : "mm:ss" }}
+  </p>
+
+  <a [routerLink]="['/intro-page']">Exit Game</a>
+  <button (click)="resetGame()">Reset Game</button>
+  <button *ngIf="gameStatus !== 'Ended'" (click)="finishGame()">Finish</button>
+  <div *ngIf="gameStatus !== 'Ended'">
+    <ngx-race
+      [ngClass]="{
+        'black-and-white': selectedColorPalette === 'high-contrast'
+      }"
+      #game
+      (carOvertaken)="grantPoints()"
+      (gameOver)="gameOver()"
+    >
+    </ngx-race>
+    <br /><br />
+
+    <div [ngSwitch]="gameStatus">
+      <button *ngSwitchCase="'Ready'" (click)="startGame()">Start Game</button>
+      <button *ngSwitchCase="'Started'" (click)="stopGame()">Pause Game</button>
+      <button *ngSwitchCase="'Paused'" (click)="resumeGame()">
+        Resume Game
+      </button>
+    </div>
+    <br />
+  </div>
+  <app-game-controller
+    [isControlDisabled]="isControlDisabled"
+    (turboOn)="turboOn()"
+    (turboOff)="turboOff()"
+    (actionLeft)="actionLeft()"
+    (actionRight)="actionRight()"
+  >
+  </app-game-controller>
+
+  <div class="game-result" *ngIf="gameStatus === 'Ended'">
+    <h2>Game Over, {{ playerName }}!</h2>
+  </div>
+</div>
+
+<!-- <div class="game-history" *ngIf="gameStatus === 'Ended'">
+  <h2>Gameplay History</h2>
+  <p>Game Status: {{ gameStatus }}</p>
+  <p>Points: {{ points }}</p>
+  <p>Time Spent: {{ timeSpent | date : "mm:ss" }}</p>
+
+  <select [(ngModel)]="selectedAction">
+    <option *ngFor="let action of selectedActionValues" [value]="action">
+      {{ action }}
+    </option>
+  </select>
+  <select [(ngModel)]="selectedSortOrder">
+    <option value="asc">Actions from the start</option>
+    <option value="desc">Actions from the end</option>
+  </select>
+
+  <ul>
+    <li
+      *ngFor="
+        let record of gameplayHistory
+          | gameplayHistoryFilter : selectedAction
+          | sortHistory : selectedSortOrder
+      "
+    >
+      {{ record.timeStamp | date : "short" }}: {{ record.action }}
+    </li>
+  </ul>
+</div> -->
+
+<app-highscore></app-highscore>
+
+<app-highscore-list></app-highscore-list>

@@ -1,0 +1,12 @@
+<div>
+  <h2>Top 10 Highscores</h2>
+
+  <button (click)="setSortOrder('asc')">Sort Asc</button>
+  <button (click)="setSortOrder('desc')">Sort Desc</button>
+
+  <ul>
+    <li *ngFor="let score of highscores | sortHighscore : sortOrder">
+      {{ score.name }}: {{ score.score }}
+    </li>
+  </ul>
+</div>

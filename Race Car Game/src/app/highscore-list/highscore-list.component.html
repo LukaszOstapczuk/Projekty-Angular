@@ -1,0 +1,11 @@
+<div>
+  <button (click)="setSortOrder('asc')">Sort Asc</button>
+  <button (click)="setSortOrder('desc')">Sort Desc</button>
+  <button (click)="togglePlayerFilter()">Toggle My Scores</button>
+
+  <ul>
+    <li *ngFor="let score of filteredScores">
+      {{ score.name }} - {{ score.score }}
+    </li>
+  </ul>
+</div>
